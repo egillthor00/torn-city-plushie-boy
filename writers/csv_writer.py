@@ -5,10 +5,12 @@ def openfile(file_name):
     file = open(file_name, 'a+', newline='')
     return file
 
-def write_data(file, data):
+def write_data(file, data, counter = 0):
     sum = 0
     write_list = []
     writer = csv.writer(file)
+    if counter != 0:
+        write_list.append(str(counter))
     timestamp = dt.datetime.now().time()
     write_list.append(timestamp)
     for i in data["plushies"]:

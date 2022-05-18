@@ -54,6 +54,7 @@ if loop_check == False:
 while loop_check == True:
 
     plushie_dict = {}
+    counter = 1
 
     for ke, val in plushie_ids.items():
         item_market_d = Plushie_calculator.get_item_market_data(API_KEY, val)
@@ -65,8 +66,9 @@ while loop_check == True:
 
     print("... Writing ...")
     f = writer.openfile(pricing_file)
-    writer.write_data(f, plushie_dict)
+    writer.write_data(f, plushie_dict, counter)
     f.close()
+    counter += 1
     time.sleep(300)
 
 
