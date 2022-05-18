@@ -3,6 +3,7 @@ import calculators.Plushie_calculator as Plushie_calculator
 import calculators.points_calculator as points_calculator
 import calculators.misc_calculators as misc_calculators
 import writers.csv_writer as writer
+import time
 
 loop_check = False
 pricing_file = "csv_files/pricing.csv" #pricing file header timestamp,Camel,Chamois,Jaguar,Kitten,Lion,Monkey,Nessie,Panda,Red_Fox,Sheep,Stingray,Teddy_bear,Wolverine
@@ -45,9 +46,27 @@ if loop_check == False:
         f = writer.openfile(pricing_file)
         writer.write_data(f, plushie_dict)
         f.close()
- 
+    else:
+        loop_start = input("Do you want to start a loop. \nThe loop will run every 5 min until its manually killed. \n(Y/N)")
+        if loop_start.lower() == "y":
+            loop_check = True
 
+while loop_check == True:
 
+    plushie_dict = {}
 
+    for ke, val in plushie_ids.items():
+        item_market_d = Plushie_calculator.get_item_market_data(API_KEY, val)
+        lowest = Plushie_calculator.get_lowest_plush(item_market_d,ke)
+        if len(plushie_dict) < 1:
+            plushie_dict.update({"plushies":[lowest]})
+        else:
+            plushie_dict["plushies"].append(lowest)
+
+    print("... Writing ...")
+    f = writer.openfile(pricing_file)
+    writer.write_data(f, plushie_dict)
+    f.close()
+    time.sleep(300)
 
 
