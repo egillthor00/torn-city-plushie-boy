@@ -1,5 +1,11 @@
 from calendar import c
+import requests
+import json
 
+def get_item_market_data(API_KEY, plushie_id):
+    item_market_request = requests.get("https://api.torn.com/market/" + str(plushie_id) + "?selections=&key=" + API_KEY)
+    item_market_d = json.loads(item_market_request.text)
+    return item_market_d
 
 def get_lowest_plush(data, plushie_id):
     returndict = {}
