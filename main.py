@@ -64,6 +64,7 @@ while loop_check == True:
         else:
             plushie_dict["plushies"].append(lowest)
 
+    print(f"Line nr: {counter}")
     print("... Writing ...")
     f = writer.openfile(pricing_file)
     writer.write_data(f, plushie_dict, counter)
