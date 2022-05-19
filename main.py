@@ -50,11 +50,12 @@ if loop_check == False:
         loop_start = input("Do you want to start a loop. \nThe loop will run every 5 min until its manually killed. \n(Y/N)")
         if loop_start.lower() == "y":
             loop_check = True
+            counter = 1
 
 while loop_check == True:
 
     plushie_dict = {}
-    counter = 1
+    
 
     for ke, val in plushie_ids.items():
         item_market_d = Plushie_calculator.get_item_market_data(API_KEY, val)
