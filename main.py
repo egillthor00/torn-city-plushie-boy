@@ -71,6 +71,6 @@ while loop_check == True:
     writer.write_data(f, plushie_dict, counter)
     f.close()
     counter += 1
-    time.sleep(300)
+    time.sleep(120)
 
 
